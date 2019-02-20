@@ -5,6 +5,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
@@ -26,4 +30,9 @@ module.exports = {
       template: './src/index.html',
     }),
   ],
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.js',
+    },
+  },
 };
