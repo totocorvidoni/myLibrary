@@ -57,6 +57,6 @@ export default {
 
 <style>
 #library {
-  margin: 1em;
+  margin: 2em 0 2em calc(100px + 2em);
 }
 </style>
