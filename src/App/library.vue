@@ -1,14 +1,17 @@
 <template>
   <div id="library">
     <book v-for="book in books" :key="book.id" v-bind="book"></book>
+    <new-book-form @newBook="addToLibrary"></new-book-form>
   </div>
 </template>
 
 <script>
 import book from "./book/book.vue";
+import newBookForm from "./addBook/addBook.vue";
 export default {
   components: {
-    book
+    book,
+    newBookForm
   },
   data() {
     return {
@@ -51,6 +54,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    addToLibrary: function(book) {
+      this.books.push(book);
+    }
   }
 };
 </script>
