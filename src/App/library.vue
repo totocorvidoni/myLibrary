@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="library">
     <book v-for="book in books" :key="book.id" v-bind="book"></book>
   </div>
 </template>
@@ -15,34 +15,38 @@ export default {
       books: [
         {
           id: 1,
-          title: "a title",
-          author: "some author",
-          genre: "horror",
+          title: "A Title",
+          author: "Some Author",
+          genre: "Horror",
+          rating: "★★",
           pages: 400,
           hasRead: true
         },
         {
           id: 2,
-          title: "another title",
-          author: "diferent author",
-          genre: "mistery",
+          title: "Another Title",
+          author: "Different Author",
+          genre: "Mistery",
+          rating: "★★★",
           pages: 823,
           hasRead: false
         },
         {
           id: 3,
-          title: "yet another one",
-          author: "me",
-          genre: "action",
+          title: "Yet Another One",
+          author: "Me",
+          genre: "Action",
           pages: 83,
+          rating: "★★",
           hasRead: true
         },
         {
           id: 4,
-          title: "best title",
-          author: "pupe",
-          genre: "magical",
+          title: "Best Title",
+          author: "Pupe",
+          genre: "Magical",
           pages: 777,
+          rating: "★★★★★",
           hasRead: false
         }
       ]
@@ -51,8 +55,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #library {
-  background: grey;
+  margin: 1em;
 }
 </style>
