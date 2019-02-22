@@ -4,25 +4,26 @@
       <h1>{{ title }}</h1>
       <p>- {{ author }}</p>
     </header>
-    <p class="category">
-      <span>Genre:</span>
-      {{ genre }}
-    </p>
-    <p class="category">
-      <span>Pages:</span>
-      {{ pages }}
-    </p>
-    <p class="category">
-      <span class="stars">{{ rating }}</span>
-    </p>
-    <div class="has-read"></div>
+    <div class="book-info">
+      <p class="category">
+        <span>Genre:</span>
+        {{ genre }}
+      </p>
+      <p class="category">
+        <span>Pages:</span>
+        {{ pages }}
+      </p>
+      <p class="category stars">
+        <span>{{ rating }}</span>
+      </p>
+      <div class="has-read"></div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    id: Number,
     title: String,
     author: String,
     genre: String,
@@ -39,9 +40,8 @@ export default {
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.5em;
-  margin: 1em 0 1em 0;
-  padding: 1em;
-  min-width: 480px;
+  padding: 1em 2em;
+  transition: all 1s ease;
 }
 
 .book header {
@@ -52,22 +52,32 @@ export default {
   font-style: italic;
 }
 
-.book p {
-  display: inline-block;
-}
-
 .category span {
   font-weight: 700;
 }
 
-.category:not(:first-of-type)::before {
-  content: " - ";
-  font-size: 1.2em;
+.book-info {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1em;
+  grid-template-columns: auto auto 1fr;
+  justify-items: start;
 }
 
-.stars {
-  color: goldenrod;
+/* .category:not(:first-of-type)::before {
+  content: " - ";
   font-size: 1.2em;
+} */
+
+.stars {
+  justify-self: end;
+  color: #fff;
+  background: goldenrod;
+  padding: 2px 4px;
+  font-size: 1.2em;
+  margin-left: auto;
+  border-bottom-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
 }
 
 .has-read {
