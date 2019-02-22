@@ -25,7 +25,7 @@ export default {
           genre: "Horror",
           rating: "★★",
           pages: 400,
-          hasRead: true
+          isRead: true
         },
         {
           title: "Another Title",
@@ -33,7 +33,7 @@ export default {
           genre: "Mistery",
           rating: "★★★",
           pages: 823,
-          hasRead: false
+          isRead: false
         },
         {
           title: "Yet Another One",
@@ -41,7 +41,7 @@ export default {
           genre: "Action",
           pages: 83,
           rating: "★★",
-          hasRead: true
+          isRead: true
         },
         {
           title: "Best Title",
@@ -49,7 +49,7 @@ export default {
           genre: "Magical",
           pages: 777,
           rating: "★★★★★",
-          hasRead: false
+          isRead: false
         }
       ]
     };

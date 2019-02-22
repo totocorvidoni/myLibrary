@@ -34,8 +34,8 @@
         </select>
       </div>
       <div class="small-field">
-        <label for="has-read">Already read?</label>
-        <input type="checkbox" value="true" name="has-read" v-model="hasRead">
+        <label for="is-read">Already read?</label>
+        <input type="checkbox" value="true" name="is-read" v-model="isRead">
       </div>
       <input id="submit-book" type="submit" name="submit" value="Add Book">
     </form>
@@ -51,7 +51,7 @@ export default {
       genre: "",
       pages: "",
       rating: "",
-      hasRead: false,
+      isRead: false,
       addingBook: false
     };
   },
@@ -63,7 +63,7 @@ export default {
         genre: this.genre,
         pages: parseInt(this.pages, 10),
         rating: this.rating,
-        hasRead: this.hasRead
+        isRead: this.isRead
       };
       this.$emit("newBook", book);
       this.resetForm();
@@ -75,7 +75,7 @@ export default {
         (this.genre = ""),
         (this.pages = ""),
         (this.rating = ""),
-        (this.hasRead = false);
+        (this.isRead = false);
     }
   }
 };
@@ -143,6 +143,7 @@ export default {
   height: auto;
   transform: scale(2);
   margin-right: 5px;
+  margin-top: 5px;
 }
 
 #submit-book {

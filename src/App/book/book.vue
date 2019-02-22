@@ -1,5 +1,5 @@
 <template>
-  <div class="book">
+  <div class="book" @click="isRead = !isRead">
     <header>
       <h1>{{ title }}</h1>
       <p>- {{ author }}</p>
@@ -13,23 +13,25 @@
         <span>Pages:</span>
         {{ pages }}
       </p>
-      <p class="category stars">
-        <span>{{ rating }}</span>
-      </p>
-      <div class="has-read"></div>
+      <p class="category stars">{{ rating }}</p>
     </div>
+    <read-status :isRead="isRead"></read-status>
   </div>
 </template>
 
 <script>
+import readStatus from "./book-components/read-status.vue";
 export default {
+  components: {
+    readStatus
+  },
   props: {
     title: String,
     author: String,
     genre: String,
     pages: Number,
     rating: String,
-    hasRead: Boolean
+    isRead: Boolean
   }
 };
 </script>
@@ -40,8 +42,13 @@ export default {
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.5em;
+  cursor: pointer;
   padding: 1em 2em;
   transition: all 1s ease;
+}
+
+.book:hover {
+  /* transform: scale(1.1); */
 }
 
 .book header {
@@ -69,23 +76,10 @@ export default {
   justify-self: end;
   color: #fff;
   background: goldenrod;
-  padding: 2px 4px;
+  padding: 3px 6px;
   font-size: 1.2em;
   margin-left: auto;
   border-bottom-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-}
-
-.has-read {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-bottom: 40px solid transparent;
-  border-right: 40px solid aquamarine;
-  border-top: 40px solid aquamarine;
-  border-left: 40px solid transparent;
   border-top-right-radius: 0.5em;
 }
 </style>
