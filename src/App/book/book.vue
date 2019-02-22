@@ -62,12 +62,8 @@ export default {
   grid-gap: 1em;
   grid-template-columns: auto auto 1fr;
   justify-items: start;
+  align-items: center;
 }
-
-/* .category:not(:first-of-type)::before {
-  content: " - ";
-  font-size: 1.2em;
-} */
 
 .stars {
   justify-self: end;
