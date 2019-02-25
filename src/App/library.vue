@@ -1,7 +1,7 @@
 <template>
   <div id="library">
     <add-book id="add-book" @newBook="addToLibrary"></add-book>
-    <div id="book-list">
+    <div v-if="books" id="book-list">
       <book
         v-for="book in books"
         v-bind="book"
@@ -10,6 +10,7 @@
         @delete="onDelete"
       ></book>
     </div>
+    <div v-else>you have nothing to show for.</div>
     <h1 id="title">MY LIBRARY</h1>
   </div>
 </template>
@@ -69,7 +70,7 @@ export default {
 }
 
 body {
-  background: beige;
+  background: #ebf5dc;
 }
 
 #app {
