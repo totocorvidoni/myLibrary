@@ -51,7 +51,7 @@ export default {
 }
 
 .book:hover .status-message {
-  transform: translateY(-45px);
+  transform: translateY(-50px);
 }
 .not-read {
   background: hsla(214, 11%, 68%, 1);

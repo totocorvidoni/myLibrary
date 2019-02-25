@@ -1,5 +1,5 @@
 <template>
-  <div class="book" @click="isRead = !isRead">
+  <div class="book" @click="$emit('onToggleRead', id)">
     <header>
       <h1>{{ title }}</h1>
       <p>- {{ author }}</p>
@@ -16,16 +16,20 @@
       <p class="category stars">{{ rating }}</p>
     </div>
     <read-status :isRead="isRead"></read-status>
+    <delete-button></delete-button>
   </div>
 </template>
 
 <script>
 import readStatus from "./book-components/read-status.vue";
+import deleteButton from "./book-components/delete-book.vue";
 export default {
   components: {
-    readStatus
+    readStatus,
+    deleteButton
   },
   props: {
+    id: Number,
     title: String,
     author: String,
     genre: String,
@@ -42,17 +46,19 @@ export default {
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.5em;
+  border: 3px solid #fff;
   cursor: pointer;
-  padding: 1em 2em;
-  transition: all 1s ease;
+  padding: 1em 1em 1em 2em;
+  transition: all 300ms cubic-bezier(0.41, 1.29, 0.55, 1.24);
 }
 
 .book:hover {
-  /* transform: scale(1.1); */
+  border-bottom: 3px solid #4db6ac;
 }
 
 .book header {
   margin-bottom: 1em;
+  padding-left: 1em;
 }
 
 .book header p {

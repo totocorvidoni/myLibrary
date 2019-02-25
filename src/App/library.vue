@@ -2,7 +2,7 @@
   <div id="library">
     <add-book id="add-book" @newBook="addToLibrary"></add-book>
     <div id="book-list">
-      <book v-for="book in books" v-bind="book"></book>
+      <book v-for="book in books" v-bind="book" :key="book.id" @onToggleRead="toggleRead"></book>
     </div>
     <h1 id="title">MY LIBRARY</h1>
   </div>
@@ -16,10 +16,12 @@ export default {
     book,
     addBook
   },
+  idCount: 1,
   data() {
     return {
       books: [
         {
+          id: 100,
           title: "A Title",
           author: "Some Author",
           genre: "Horror",
@@ -28,6 +30,7 @@ export default {
           isRead: true
         },
         {
+          id: 101,
           title: "Another Title",
           author: "Different Author",
           genre: "Mistery",
@@ -36,6 +39,7 @@ export default {
           isRead: false
         },
         {
+          id: 102,
           title: "Yet Another One",
           author: "Me",
           genre: "Action",
@@ -44,6 +48,7 @@ export default {
           isRead: true
         },
         {
+          id: 103,
           title: "Best Title",
           author: "Pupe",
           genre: "Magical",
@@ -56,7 +61,13 @@ export default {
   },
   methods: {
     addToLibrary: function(book) {
+      book.id = idCount;
+      idCount += 1;
       this.books.push(book);
+    },
+    toggleRead: function(bookId) {
+      const book = this.books.find(aBook => aBook.id === bookId);
+      book.isRead = !book.isRead;
     }
   }
 };
