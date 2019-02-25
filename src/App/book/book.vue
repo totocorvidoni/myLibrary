@@ -1,22 +1,24 @@
 <template>
-  <div class="book" @click="$emit('onToggleRead', id)">
-    <header>
-      <h1>{{ title }}</h1>
-      <p>- {{ author }}</p>
-    </header>
-    <div class="book-info">
-      <p class="category">
-        <span>Genre:</span>
-        {{ genre }}
-      </p>
-      <p class="category">
-        <span>Pages:</span>
-        {{ pages }}
-      </p>
-      <p class="category stars">{{ rating }}</p>
-    </div>
-    <read-status :isRead="isRead"></read-status>
+  <div class="book-area">
     <delete-button></delete-button>
+    <div class="book" @click="$emit('toggleRead', id)">
+      <header>
+        <h1>{{ title }}</h1>
+        <p>- {{ author }}</p>
+      </header>
+      <div class="book-info">
+        <p class="category">
+          <span>Genre:</span>
+          {{ genre }}
+        </p>
+        <p class="category">
+          <span>Pages:</span>
+          {{ pages }}
+        </p>
+        <p class="category stars">{{ rating }}</p>
+      </div>
+      <read-status :isRead="isRead"></read-status>
+    </div>
   </div>
 </template>
 
@@ -41,6 +43,10 @@ export default {
 </script>
 
 <style>
+.book-area {
+  position: relative;
+}
+
 .book {
   position: relative;
   background: #fff;
@@ -58,7 +64,7 @@ export default {
 
 .book header {
   margin-bottom: 1em;
-  padding-left: 1em;
+  padding-right: 1em;
 }
 
 .book header p {

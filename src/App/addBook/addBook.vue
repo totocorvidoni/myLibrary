@@ -133,7 +133,7 @@ export default {
 }
 
 .new-book-form select[name="rating"] {
-  width: 30px;
+  width: 40px;
 }
 
 .new-book-form input[type="checkbox"] {

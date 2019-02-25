@@ -19,13 +19,13 @@ export default {};
   font-weight: 700;
   width: 1.3em;
   height: 1.3em;
-  transform: rotate(45deg) scale(0.1);
+  transform: scale(0.1);
   transition: all 300ms cubic-bezier(0.41, 1.29, 0.55, 1.24);
   z-index: 10;
 }
 
-.book:hover .delete,
+.book-area:hover .delete,
 .delete:hover {
-  transform: translate(-35px, 35px) scale(1) rotate(135deg);
+  transform: translate(35px, -35px) scale(1) rotate(135deg);
 }
 </style>
