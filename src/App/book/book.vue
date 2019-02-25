@@ -1,6 +1,6 @@
 <template>
   <div class="book-area">
-    <delete-button></delete-button>
+    <delete-button @delete="$emit('delete', id)"></delete-button>
     <div class="book" @click="$emit('toggleRead', id)">
       <header>
         <h1>{{ title }}</h1>
