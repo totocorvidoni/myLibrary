@@ -22,78 +22,46 @@ export default {
     book,
     addBook
   },
-  idCount: 1,
   data() {
     return {
-      books: [
-        {
-          id: 100,
-          title:
-            "Very long title por testing purposes, yes indeed it is very long, be amazed",
-          author: "Pupe",
-          genre: "Magical",
-          pages: 777,
-          rating: "★★★★★",
-          isRead: false
-        },
-        {
-          id: 101,
-          title: "Another Title",
-          author: "Different Author",
-          genre: "Mistery",
-          rating: "★★★",
-          pages: 823,
-          isRead: false
-        },
-        {
-          id: 102,
-          title: "Yet Another One",
-          author: "Me",
-          genre: "Action",
-          pages: 83,
-          rating: "★★",
-          isRead: true
-        },
-        {
-          id: 103,
-          title: "Best Title",
-          author: "Pupe",
-          genre: "Magical",
-          pages: 777,
-          rating: "★★★★★",
-          isRead: false
-        },
-        {
-          id: 104,
-          title: "A Title",
-          author: "Some Author",
-          genre: "Horror",
-          rating: "★★",
-          pages: 400,
-          isRead: true
-        }
-      ]
+      idCount: 1,
+      books: []
     };
   },
   methods: {
+    saveLibrary: function() {
+      localStorage.setItem("books", JSON.stringify(this.books));
+      localStorage.setItem("idCount", this.idCount);
+    },
     addToLibrary: function(book) {
       book.id = this.idCount;
       this.idCount += 1;
       this.books.push(book);
+      this.saveLibrary();
     },
     onToggleRead: function(bookId) {
       const book = this.books.find(aBook => aBook.id === bookId);
       book.isRead = !book.isRead;
+      this.saveLibrary();
     },
     onDelete: function(bookId) {
       const bookIndex = this.books.findIndex(aBook => aBook.id === bookId);
       this.books.splice(bookIndex, 1);
+      this.saveLibrary();
+    }
+  },
+  mounted: function() {
+    if (localStorage.hasOwnProperty("books")) {
+      this.books = JSON.parse(localStorage.getItem("books"));
+      this.idCount = parseInt(localStorage.getItem("idCount"), 10);
     }
   }
 };
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
 * {
   margin: 0;
   padding: 0;
@@ -105,7 +73,7 @@ body {
 }
 
 #app {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", Helvetica, Arial, sans-serif;
   width: 100vw;
 }
 
@@ -124,13 +92,13 @@ body {
   grid-gap: 2em;
   width: calc(100vw - 75px);
   margin-left: 75px;
-  padding: 2em 4em 2em 2em;
+  padding: 3em 4em 2em 3em;
 }
 
 #title {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 15px;
+  right: 15px;
   color: #ffffff90;
   font-size: 3em;
   font-weight: 700;
