@@ -1,44 +1,42 @@
 <template>
   <div>
-    <button
-      class="new-book-button"
-      v-if="!addingBook"
-      @click="addingBook = !addingBook"
-      title="New Book"
-    >+</button>
-    <form class="new-book-form" v-else @submit.prevent="onSubmit">
-      <label for="title">Title</label>
-      <input type="text" name="title" v-model="title" required>
-      <label for="author">Author</label>
-      <input type="text" name="author" v-model="author" required>
-      <label for="genre">Genre</label>
-      <select name="genre" v-model="genre" required>
-        <option disabled value>Pick one</option>
-        <option value="Fantasy">Fantasy</option>
-        <option value="Western">Western</option>
-        <option value="Romance">Romance</option>
-        <option value="Thriller">Thriller</option>
-        <option value="Mystery">Mystery</option>
-      </select>
-      <label for="pages">Pages</label>
-      <input type="number" min="1" v-model="pages" required>
-      <div class="small-field">
-        <label for="rating">Stars:</label>
-        <select name="rating" v-model="rating" required>
-          <option disabled value>-</option>
-          <option value="★">1</option>
-          <option value="★★">2</option>
-          <option value="★★★">3</option>
-          <option value="★★★★">4</option>
-          <option value="★★★★★">5</option>
+    <button class="new-book-button" v-if="!addingBook" @click="addingBook = true" title="New Book">+</button>
+    <div v-else>
+      <form class="new-book-form" @submit.prevent="onSubmit">
+        <label for="title">Title</label>
+        <input type="text" name="title" v-model="title" required>
+        <label for="author">Author</label>
+        <input type="text" name="author" v-model="author" required>
+        <label for="genre">Genre</label>
+        <select name="genre" v-model="genre" required>
+          <option disabled value>Pick one</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Western">Western</option>
+          <option value="Romance">Romance</option>
+          <option value="Thriller">Thriller</option>
+          <option value="Mystery">Mystery</option>
         </select>
-      </div>
-      <div class="small-field">
-        <label for="is-read">Already read?</label>
-        <input type="checkbox" value="true" name="is-read" v-model="isRead">
-      </div>
-      <input id="submit-book" type="submit" name="submit" value="Add Book">
-    </form>
+        <label for="pages">Pages</label>
+        <input type="number" min="1" v-model="pages" required>
+        <div class="small-field">
+          <label for="rating">Stars:</label>
+          <select name="rating" v-model="rating" required>
+            <option disabled value>-</option>
+            <option value="★">1</option>
+            <option value="★★">2</option>
+            <option value="★★★">3</option>
+            <option value="★★★★">4</option>
+            <option value="★★★★★">5</option>
+          </select>
+        </div>
+        <div class="small-field">
+          <label for="is-read">Already read?</label>
+          <input type="checkbox" value="true" name="is-read" v-model="isRead">
+        </div>
+        <input id="submit-book" type="submit" name="submit" value="Add Book">
+      </form>
+      <button id="close-form" title="Cancel New Book" @click="addingBook = false">X</button>
+    </div>
   </div>
 </template>
 
@@ -104,6 +102,7 @@ export default {
   display: grid;
   grid-gap: 5px;
   padding: 1em;
+  margin-top: 1em;
   width: 200px;
 }
 
@@ -137,13 +136,14 @@ export default {
 }
 
 .new-book-form input[type="checkbox"] {
+  background: #fff;
   justify-self: center;
   align-self: center;
-  width: auto;
-  height: auto;
   transform: scale(2);
   margin-right: 5px;
   margin-top: 5px;
+  width: auto;
+  height: auto;
 }
 
 #submit-book {
@@ -152,5 +152,32 @@ export default {
   color: #fff;
   font-size: 1em;
   font-weight: 700;
+}
+
+#submit-book:hover {
+  background-color: #4db6ac;
+}
+
+#close-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  border-bottom-left-radius: 0.5em;
+  background: rgb(220, 20, 60);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 0.5em;
+}
+
+#close-form:hover {
+  background: red;
+}
+
+button,
+input[type="submit"] {
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.41, 1.29, 0.55, 1.24);
 }
 </style>

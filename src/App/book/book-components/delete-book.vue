@@ -10,7 +10,7 @@ export default {};
 .delete {
   position: absolute;
   top: -40px;
-  right: 5px;
+  right: 10px;
   background: rgb(220, 20, 60);
   border: 3px solid #fff;
   border-radius: 50%;
@@ -27,11 +27,12 @@ export default {};
 
 .book-area:hover .delete,
 .delete:hover {
-  transform: translateY(0) scale(1) rotate(135deg);
+  transform: translateY(0) rotate(135deg);
   z-index: 10;
 }
 .delete:hover {
   transform: scale(1.1);
+  background: red;
   box-shadow: 0 0 5px rgba(220, 20, 60, 0.7);
 }
 </style>
