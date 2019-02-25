@@ -8,11 +8,11 @@
       </header>
       <div class="book-info">
         <p class="category">
-          <span>Genre:</span>
+          <strong>Genre:</strong>
           {{ genre }}
         </p>
         <p class="category">
-          <span>Pages:</span>
+          <strong>Pages:</strong>
           {{ pages }}
         </p>
         <p class="category stars">{{ rating }}</p>
@@ -48,12 +48,15 @@ export default {
 }
 
 .book {
+  display: grid;
+  grid-template-rows: auto 1fr;
   position: relative;
   background: #fff;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.5em;
   border: 3px solid #fff;
   cursor: pointer;
+  min-height: 150px;
   padding: 1em 1em 1em 2em;
   transition: all 300ms cubic-bezier(0.41, 1.29, 0.55, 1.24);
 }
@@ -65,17 +68,15 @@ export default {
 .book header {
   margin-bottom: 1em;
   padding-right: 1em;
+  font-size: 0.8em;
 }
 
 .book header p {
   font-style: italic;
 }
 
-.category span {
-  font-weight: 700;
-}
-
 .book-info {
+  align-self: end;
   display: grid;
   grid-auto-flow: column;
   grid-gap: 1em;
