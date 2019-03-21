@@ -34,12 +34,12 @@ export default {
 }
 
 .read {
-  border-top: 25px solid hsla(100, 88%, 76%, 1);
+  border-top: 25px solid hsla(100, 88%, 60%, 1);
   border-right: 25px solid hsla(155, 100%, 35%, 1);
 }
 
 .status-message {
-  background: hsla(100, 88%, 76%, 1);
+  background: hsla(100, 88%, 60%, 1);
   position: absolute;
   top: 20px;
   left: 20px;

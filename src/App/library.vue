@@ -1,6 +1,13 @@
 <template>
   <div id="library">
-    <add-book id="add-book" @newBook="addToLibrary"></add-book>
+    <transition name="slide" mode="out-in" appear>
+      <component
+        id="add-book"
+        :is="currentBarComponent"
+        @newBook="addToLibrary"
+        @toggle-bar="onToggleBar"
+      ></component>
+    </transition>
     <div v-if="books" id="book-list">
       <book
         v-for="book in books"
@@ -17,16 +24,20 @@
 
 <script>
 import book from "./book/book.vue";
-import addBook from "./addBook/addBook.vue";
+import addBookForm from "./addBook/addBookForm.vue";
+import addBookButton from "./addBook/addBookButton.vue";
 export default {
+  name: "library",
   components: {
     book,
-    addBook
+    addBookForm,
+    addBookButton
   },
   data() {
     return {
       idCount: 1,
-      books: []
+      books: [],
+      currentBarComponent: "addBookButton"
     };
   },
   methods: {
@@ -44,6 +55,13 @@ export default {
       const book = this.books.find(aBook => aBook.id === bookId);
       book.isRead = !book.isRead;
       this.saveLibrary();
+    },
+    onToggleBar: function() {
+      if (this.currentBarComponent === "addBookButton") {
+        this.currentBarComponent = "addBookForm";
+      } else {
+        this.currentBarComponent = "addBookButton";
+      }
     },
     onDelete: function(bookId) {
       const bookIndex = this.books.findIndex(aBook => aBook.id === bookId);
@@ -106,5 +124,14 @@ body {
   writing-mode: vertical-lr;
   transform: rotate(180deg);
   z-index: -100;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 300ms ease-out;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(-200px);
 }
 </style>
