@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="form-wrapper">
+    <button class="close-form tiny-close" title="Cancel New Book" @click="$emit('toggle-bar')">X</button>
     <form class="new-book-form" @submit.prevent="onSubmit">
       <label for="title">Title</label>
       <input type="text" name="title" v-model="title" required>
@@ -13,6 +14,7 @@
         <option value="Romance">Romance</option>
         <option value="Thriller">Thriller</option>
         <option value="Mystery">Mystery</option>
+        <option value="Other">Other</option>
       </select>
       <label for="pages">Pages</label>
       <input type="number" min="1" v-model="pages" required>
@@ -33,22 +35,62 @@
       </div>
       <input id="submit-book" type="submit" name="submit" value="Add Book">
     </form>
-    <button id="close-form" title="Cancel New Book" @click="$emit('toggle-bar')">X</button>
+    <button
+      class="close-form large-close"
+      title="Cancel New Book"
+      @click="$emit('toggle-bar')"
+    >Close Panel</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "addBookForm"
+  name: "addBookForm",
+  data() {
+    return {
+      title: "",
+      author: "",
+      genre: "",
+      pages: "",
+      rating: "",
+      isRead: false
+    };
+  },
+  methods: {
+    onSubmit: function() {
+      const book = {
+        title: this.title,
+        author: this.author,
+        genre: this.genre,
+        pages: parseInt(this.pages, 10),
+        rating: this.rating,
+        isRead: this.isRead
+      };
+      this.$emit("newBook", book);
+      this.resetForm();
+      this.$emit("toggle-bar");
+    },
+    resetForm: function() {
+      this.title = "";
+      this.author = "";
+      this.genre = "";
+      this.pages = "";
+      this.rating = "";
+      this.isRead = false;
+    }
+  },
 };
 </script>
 
 <style>
+.form-wrapper {
+  background: #36434f;
+}
+
 .new-book-form {
   display: grid;
   grid-gap: 5px;
   padding: 1em;
-  margin-top: 1em;
   width: 200px;
 }
 
@@ -64,7 +106,7 @@ export default {
 }
 
 .new-book-form label {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .new-book-form input,
@@ -78,7 +120,7 @@ export default {
 }
 
 .new-book-form select[name="rating"] {
-  width: 40px;
+  width: 50px;
 }
 
 .new-book-form input[type="checkbox"] {
@@ -102,23 +144,37 @@ export default {
 
 #submit-book:hover {
   background-color: #4db6ac;
+  transform: scale(1.05);
 }
 
-#close-form {
+.close-form {
   position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  border-bottom-left-radius: 0.5em;
   background: rgb(220, 20, 60);
+  border: none;
   color: #fff;
   font-weight: 700;
-  font-size: 1.1em;
   padding: 0.5em;
 }
 
-#close-form:hover {
+.large-close {
+  bottom: 0;
+  font-size: 1em;
+  width: 100%;
+}
+
+.large-close:hover {
   background: red;
+  padding: 1em 0.5em;
+}
+
+.tiny-close {
+  left: 100%;
+  border-bottom-right-radius: 0.5em;
+}
+
+.tiny-close:hover {
+  background: red;
+  transform: scale(1.25) translate(10%, 10%);
 }
 
 button,

@@ -39,7 +39,7 @@ export default {
 }
 
 .status-message {
-  background: hsla(100, 88%, 60%, 1);
+  background: hsla(155, 100%, 35%, 1);
   position: absolute;
   top: 20px;
   left: 20px;

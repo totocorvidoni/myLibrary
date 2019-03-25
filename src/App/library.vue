@@ -1,6 +1,6 @@
 <template>
   <div id="library">
-    <transition name="slide" mode="out-in" appear>
+    <transition name="slide" mode="out-in">
       <component
         id="add-book"
         :is="currentBarComponent"
@@ -8,7 +8,13 @@
         @toggle-bar="onToggleBar"
       ></component>
     </transition>
-    <div v-if="books" id="book-list">
+    <div v-if="noBooks" id="no-books">
+      <div class="wrapper">
+        <h1>You have no books in your library.</h1>
+        <p>Add some by clicking the bar on the left.</p>
+      </div>
+    </div>
+    <div v-else id="book-list">
       <book
         v-for="book in books"
         v-bind="book"
@@ -17,7 +23,6 @@
         @delete="onDelete"
       ></book>
     </div>
-    <div v-else>you have nothing to show for.</div>
     <h1 id="title">MY LIBRARY</h1>
   </div>
 </template>
@@ -74,6 +79,11 @@ export default {
       this.books = JSON.parse(localStorage.getItem("books"));
       this.idCount = parseInt(localStorage.getItem("idCount"), 10);
     }
+  },
+  computed: {
+    noBooks: function() {
+      return this.books.length === 0 ? true : false;
+    }
   }
 };
 </script>
@@ -88,7 +98,7 @@ export default {
 }
 
 body {
-  background: #ebf5dc;
+  background: linear-gradient(to bottom right, #fafcde, #e3ffdd);
 }
 
 #app {
@@ -96,11 +106,14 @@ body {
   width: 100vw;
 }
 
+#library {
+  padding-left: 50px;
+}
+
 #add-book {
   position: fixed;
-  background: #36434f;
-  box-shadow: 5px 0 5px rgba(0, 0, 0, 0.2);
-  min-width: 75px;
+  left: 0;
+  min-width: 50px;
   height: 100%;
   z-index: 100;
 }
@@ -109,9 +122,31 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   grid-gap: 2em;
-  width: calc(100vw - 75px);
-  margin-left: 75px;
+  width: calc(100vw - 50px);
   padding: 3em 4em 2em 3em;
+}
+
+#no-books {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  padding-top: 3em;
+}
+
+#no-books .wrapper {
+  background: #fff;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5em;
+  padding: 2em;
+  text-align: center;
+}
+
+#no-books h1 {
+  margin-bottom: 0.5em;
+}
+
+#no-books p {
+  font-size: 1.3em;
 }
 
 #title {
@@ -128,10 +163,10 @@ body {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 300ms ease-out;
+  transition: all 150ms ease-out;
 }
 .slide-enter,
 .slide-leave-to {
-  transform: translateX(-200px);
+  transform: translateX(-100%);
 }
 </style>

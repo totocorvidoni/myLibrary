@@ -1,25 +1,27 @@
 <template>
-  <div class="book-area">
-    <delete-button @delete="$emit('delete', id)"></delete-button>
-    <div class="book" @click="$emit('toggleRead', id)">
-      <header>
-        <h1>{{ title }}</h1>
-        <p>- {{ author }}</p>
-      </header>
-      <div class="book-info">
-        <p class="category">
-          <strong>Genre:</strong>
-          {{ genre }}
-        </p>
-        <p class="category">
-          <strong>Pages:</strong>
-          {{ pages }}
-        </p>
-        <p class="category stars">{{ rating }}</p>
+  <transition name="pop">
+    <div class="book-area">
+      <delete-button @delete="$emit('delete', id)"></delete-button>
+      <div class="book" @click="$emit('toggleRead', id)">
+        <header>
+          <h1>{{ title }}</h1>
+          <p>- {{ author }}</p>
+        </header>
+        <div class="book-info">
+          <p class="category">
+            <strong>Genre:</strong>
+            {{ genre }}
+          </p>
+          <p class="category">
+            <strong>Pages:</strong>
+            {{ pages }}
+          </p>
+          <p class="category stars">{{ rating }}</p>
+        </div>
+        <read-status :isRead="isRead"></read-status>
       </div>
-      <read-status :isRead="isRead"></read-status>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -94,5 +96,18 @@ export default {
   margin-left: auto;
   border-bottom-left-radius: 0.5em;
   border-top-right-radius: 0.5em;
+}
+
+.pop-enter-active {
+  transition: transform 300ms cubic-bezier(0.41, 1.29, 0.55, 1.24);
+}
+
+.pop-leave-active {
+  transition: transform 300ms cubic-bezier(0.41, 1, 0.55, 1);
+}
+
+.pop-enter,
+.pop-leave-to {
+  transform: scale(0);
 }
 </style>

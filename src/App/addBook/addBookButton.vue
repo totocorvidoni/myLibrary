@@ -17,29 +17,6 @@ export default {
       isRead: false,
       addingBook: false
     };
-  },
-  methods: {
-    onSubmit: function() {
-      const book = {
-        title: this.title,
-        author: this.author,
-        genre: this.genre,
-        pages: parseInt(this.pages, 10),
-        rating: this.rating,
-        isRead: this.isRead
-      };
-      this.$emit("newBook", book);
-      this.resetForm();
-      this.addingBook = false;
-    },
-    resetForm: function() {
-      (this.title = ""),
-        (this.author = ""),
-        (this.genre = ""),
-        (this.pages = ""),
-        (this.rating = ""),
-        (this.isRead = false);
-    }
   }
 };
 </script>
@@ -57,9 +34,11 @@ export default {
   font-size: 2.5em;
   padding: 0.5rem 0;
   width: 100%;
+  height: 100%;
+  transition: transform 150ms ease-out;
 }
 
 .new-book-button:hover {
-  background-color: #4db6ac;
+  transform: scale(1.2) translateX(10%);
 }
 </style>
