@@ -29,7 +29,7 @@ export default {
 }
 
 .new-book-button {
-  background: #009688;
+  background: #36434f;
   border: none;
   font-size: 2.5em;
   padding: 0.5rem 0;

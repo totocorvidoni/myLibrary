@@ -9,10 +9,29 @@
       ></component>
     </transition>
     <div v-if="noBooks" id="no-books">
-      <div class="wrapper">
-        <h1>You have no books in your library.</h1>
+      <div class="container-box big-box">
+        <h1>You have no books in your library</h1>
         <p>Add some by clicking the bar on the left.</p>
       </div>
+      <div class="container-box">
+        <p>This is an app to organize your book library, it will fullfill all of you book related expectations as long as you only need to:</p>
+      </div>
+      <ul class="container-box">
+        <li>
+          <strong>Add</strong> books.
+        </li>
+        <li>
+          <strong>Remove</strong> books.
+        </li>
+        <li>
+          <strong>Mark</strong> them as read.
+        </li>
+      </ul>
+      <p class="container-box">
+        If you are the sort of person who expects persistance in your library, we have good news for you, your books will be
+        <strong>automatically saved</strong> everytime you make a change. Just keep in mind that the save is local to your browser, meaning that if you use a different computer, or browser, clean your history or so many other things more, you will
+        <strong>lose all of your entries</strong>.
+      </p>
     </div>
     <div v-else id="book-list">
       <book
@@ -23,6 +42,14 @@
         @delete="onDelete"
       ></book>
     </div>
+    <footer>
+      <p>
+        Made by
+        <strong>
+          <a href="https://github.com/totocorvidoni">Toto Corvidoni</a>
+        </strong>
+      </p>
+    </footer>
     <h1 id="title">MY LIBRARY</h1>
   </div>
 </template>
@@ -102,12 +129,16 @@ body {
 }
 
 #app {
+  color: #36434f;
   font-family: "Montserrat", Helvetica, Arial, sans-serif;
   width: 100vw;
 }
 
 #library {
+  display: grid;
+  align-items: start;
   padding-left: 50px;
+  height: 100%;
 }
 
 #add-book {
@@ -130,23 +161,47 @@ body {
   display: grid;
   place-items: center;
   justify-content: center;
-  padding-top: 3em;
 }
 
-#no-books .wrapper {
+.container-box {
   background: #fff;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
   border-radius: 0.5em;
-  padding: 2em;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.05);
+  margin: 0.5em;
+  max-width: 40em;
+  padding: 1em 1.5em;
+  text-align: justify;
+}
+
+ul.container-box {
+  list-style-type: none;
+  margin-left: 1em;
+}
+
+.big-box {
+  font-size: 1.3em;
+  margin: 1em;
   text-align: center;
 }
 
-#no-books h1 {
-  margin-bottom: 0.5em;
+footer {
+  align-self: end;
+  text-align: center;
+  padding-bottom: 1em;
 }
 
-#no-books p {
-  font-size: 1.3em;
+footer a {
+  text-decoration: none;
+  color: #00bcd4;
+}
+
+footer a:hover,
+footer a:visited {
+  color: #81d4fa;
+}
+
+footer a:active {
+  color: #fbc02d;
 }
 
 #title {
