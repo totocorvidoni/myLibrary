@@ -190,13 +190,13 @@ footer {
   padding-bottom: 1em;
 }
 
-footer a {
+footer a,
+footer a:visited  {
   text-decoration: none;
   color: #00bcd4;
 }
 
-footer a:hover,
-footer a:visited {
+footer a:hover {
   color: #81d4fa;
 }
 
