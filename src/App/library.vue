@@ -14,7 +14,7 @@
         <p>Add some by clicking the bar on the left.</p>
       </div>
       <div class="container-box">
-        <p>This is an app to organize your library, it will fullfill all of you book related expectations as long as you only need to:</p>
+        <p>This is an app to organize your library, it will fulfill all of you book related expectations as long as you only need to:</p>
       </div>
       <ul class="container-box">
         <li>
@@ -28,8 +28,8 @@
         </li>
       </ul>
       <p class="container-box">
-        If you are the sort of person who expects persistance in your library, we have good news for you, your books will be
-        <strong>automatically saved</strong> everytime you make a change. Just keep in mind that the save is local to your browser, meaning that if you use a different computer, or browser, clean your history or so many other things more, you will
+        If you are the sort of person who expects persistence in your library, we have good news for you, your books will be
+        <strong>automatically saved</strong> every time you make a change. Just keep in mind that the save is local to your browser, meaning that if you use a different computer, or browser, clean your history or so many other things more, you will
         <strong>lose all of your entries</strong>.
       </p>
     </div>
@@ -191,7 +191,7 @@ footer {
 }
 
 footer a,
-footer a:visited  {
+footer a:visited {
   text-decoration: none;
   color: #00bcd4;
 }
