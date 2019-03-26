@@ -14,7 +14,7 @@
         <p>Add some by clicking the bar on the left.</p>
       </div>
       <div class="container-box">
-        <p>This is an app to organize your book library, it will fullfill all of you book related expectations as long as you only need to:</p>
+        <p>This is an app to organize your library, it will fullfill all of you book related expectations as long as you only need to:</p>
       </div>
       <ul class="container-box">
         <li>
