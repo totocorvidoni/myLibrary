@@ -29,8 +29,8 @@
       </ul>
       <p class="container-box">
         If you are the sort of person who expects persistence in your library, we have good news for you, your books will be
-        <strong>automatically saved</strong> every time you make a change. Just keep in mind that the save is local to your browser, meaning that if you use a different computer, or browser, clean your history or so many other things more, you will
-        <strong>lose all of your entries</strong>.
+        <strong>automatically saved</strong> every time you make a change. Just keep in mind that the save is local to your browser, meaning that if you use a different computer, or browser, or clean your history or pretty much anything releatad to deleting stuff, you
+        <strong>will</strong> lose all of your entries.
       </p>
     </div>
     <div v-else id="book-list">
@@ -46,7 +46,7 @@
       <p>
         Made by
         <strong>
-          <a href="https://github.com/totocorvidoni">Toto Corvidoni</a>
+          <a href="https://github.com/totocorvidoni">@TotoCorvidoni</a>
         </strong>
       </p>
     </footer>
@@ -58,6 +58,7 @@
 import book from "./book/book.vue";
 import addBookForm from "./addBook/addBookForm.vue";
 import addBookButton from "./addBook/addBookButton.vue";
+
 export default {
   name: "library",
   components: {
@@ -65,6 +66,7 @@ export default {
     addBookForm,
     addBookButton
   },
+
   data() {
     return {
       idCount: 1,
@@ -72,22 +74,26 @@ export default {
       currentBarComponent: "addBookButton"
     };
   },
+
   methods: {
     saveLibrary: function() {
       localStorage.setItem("books", JSON.stringify(this.books));
       localStorage.setItem("idCount", this.idCount);
     },
+
     addToLibrary: function(book) {
       book.id = this.idCount;
       this.idCount += 1;
       this.books.push(book);
       this.saveLibrary();
     },
+
     onToggleRead: function(bookId) {
       const book = this.books.find(aBook => aBook.id === bookId);
       book.isRead = !book.isRead;
       this.saveLibrary();
     },
+
     onToggleBar: function() {
       if (this.currentBarComponent === "addBookButton") {
         this.currentBarComponent = "addBookForm";
@@ -95,18 +101,21 @@ export default {
         this.currentBarComponent = "addBookButton";
       }
     },
+
     onDelete: function(bookId) {
       const bookIndex = this.books.findIndex(aBook => aBook.id === bookId);
       this.books.splice(bookIndex, 1);
       this.saveLibrary();
     }
   },
+
   mounted: function() {
     if (localStorage.hasOwnProperty("books")) {
       this.books = JSON.parse(localStorage.getItem("books"));
       this.idCount = parseInt(localStorage.getItem("idCount"), 10);
     }
   },
+
   computed: {
     noBooks: function() {
       return this.books.length === 0 ? true : false;
