@@ -32,6 +32,7 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebPackPlugin({
       template: './src/index.html',
+      favicon: './src/favicon.ico',
     }),
   ],
   resolve: {

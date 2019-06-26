@@ -2,7 +2,7 @@
 
 ![Library Preview](./preview.png)
 
-## You can see a [working version here](https://totocorvidoni.github.io/myLibrary/).
+## You can see a working version [here](https://totocorvidoni.github.io/myLibrary/).
 
 Made as an exercise for the [Odin Project](https://www.theodinproject.com/courses/javascript/lessons/library).
 
